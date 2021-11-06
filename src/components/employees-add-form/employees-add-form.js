@@ -14,15 +14,34 @@ class EmployeesAddForm extends Component{
         this.setState({
             [evt.target.name]: evt.target.value
         })
+        console.log(evt);
+        if (evt.target.name === 'name') {
+            if (evt.target.value.length < 3) {
+                evt.target.setCustomValidity('Минимум 3 символа');
+            } else {
+                evt.target.setCustomValidity('');
+            }
+        }
+
+        if (evt.target.name === 'salary') {
+            if (evt.target.value < 100) {
+                evt.target.setCustomValidity('Минимум 100, не жадничай');
+            } else {
+                evt.target.setCustomValidity('');
+            }
+        }
     }
 
     onSubmit = (evt) => {
         evt.preventDefault();
-        this.props.onAdd(this.state.name, this.state.salary);
-        this.setState({
-            name: '',
-            salary: ''
-        })
+        if (this.state.name.length >= 3 && this.state.salary >= 100) {
+            this.props.onAdd(this.state.name, this.state.salary);
+            this.setState({
+                name: '',
+                salary: ''
+            })
+            console.log(evt);
+        }
     }
 
     render() {
