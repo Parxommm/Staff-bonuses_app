@@ -14,7 +14,6 @@ class EmployeesAddForm extends Component{
         this.setState({
             [evt.target.name]: evt.target.value
         })
-        console.log(evt);
         if (evt.target.name === 'name') {
             if (evt.target.value.length < 3) {
                 evt.target.setCustomValidity('Минимум 3 символа');
@@ -40,7 +39,6 @@ class EmployeesAddForm extends Component{
                 name: '',
                 salary: ''
             })
-            console.log(evt);
         }
     }
 
